@@ -6,3 +6,6 @@
   
   
 2020.9.30
+  视差页，原理是 background-attachment: fixed，需要注意的是响应式布局。
+  
+2020.10.1
