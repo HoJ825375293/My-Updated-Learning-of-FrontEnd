@@ -1,11 +1,11 @@
 import React from 'react';
-import NavigatePage from './NavigatePage'
+import Parallax from './Parallax';
+import '../css/HomePage.css'
 
 class HomePage extends React.Component {
     render() {
         return(
-            
-            <NavigatePage/>
+            <Parallax/>
         )
     }
 }

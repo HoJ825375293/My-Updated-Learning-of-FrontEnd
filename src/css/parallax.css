@@ -1,13 +1,9 @@
-body, html{
+.container {
 	height: 100%;
 	margin: 0;
-	font-size: 16px;
-	font-family: Arial, Helvetica, sans-serif;
-	line-height: 1.8em;
-	color: #666;
 }
 
-.img1, .img2, .img3 {
+.b-img1, .b-img2, .b-img3 {
 	position: relative;
 	opacity: 0.7;
 	background-position: center;
@@ -16,17 +12,18 @@ body, html{
 	background-attachment: fixed;
 }
 
-.img1{
+
+.b-img1{
 	background-image: url(../img/bgp-lib-1.jpg);
 	min-height: 100%;
 }
 
-.img2{
+.b-img2{
 	background-image: url(../img/bgp-lib-2.jpg);
-	min-height: 400px;
+	min-height: 600px;
 }
 
-.img3{
+.b-img3{
 	background-image: url(../img/bgp-lib-3.jpg);
 	min-height: 100%;
 }
@@ -46,25 +43,29 @@ body, html{
 	color: #ddd;
 }
 
+
 .text {
 	position: absolute;
 	top: 50%;
 	width: 100%;
 	text-align: center;
 	color: #000;
-	font-size: 27px;
+	font-weight: bold;
+	font-size: 45px;
 	letter-spacing: 8px;
 	text-transform: uppercase;
 }
 
-.bod {
+/*
+.bold {
 	background: #111;
 	color: #fff;
 	padding: 20px;
 }
+*/
 
 @media(max-width: 500px){
-	.img1, .img2, img3 {
-		background-attachment: fixed;
+	.b-img1, .b-img2, .b-img3 {
+		background-attachment: scroll;
 	}
 }
