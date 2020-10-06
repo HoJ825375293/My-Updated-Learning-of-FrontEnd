@@ -12,7 +12,7 @@ class Parallax extends React.Component {
                         </span>
                     </div>
                 </div>
-                <section class="section section-light">
+                <section class="section section-dark">
                     <h2>你好啊</h2>
                     <p>我是一名开发者，你希望了解我吗?</p>
                 </section>
@@ -23,7 +23,7 @@ class Parallax extends React.Component {
                         </span>
                     </div>
                 </div>
-                <section class="section section-dark">
+                <section class="section section-light">
                     <h2>喜爱美丽</h2>
                     <p>我希望将我看到的美丽页面，集合在一起，作为我的开发仓库。</p>
                 </section>

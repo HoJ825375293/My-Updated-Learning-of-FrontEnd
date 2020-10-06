@@ -5,7 +5,7 @@
 
 .b-img1, .b-img2, .b-img3 {
 	position: relative;
-	opacity: 0.7;
+	opacity: 0.73;
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -15,12 +15,12 @@
 
 .b-img1{
 	background-image: url(../img/bgp-lib-1.jpg);
-	min-height: 100%;
+	min-height: calc(100% - 200px);
 }
 
 .b-img2{
 	background-image: url(../img/bgp-lib-2.jpg);
-	min-height: 600px;
+	min-height: calc(100% - 200px);
 }
 
 .b-img3{
