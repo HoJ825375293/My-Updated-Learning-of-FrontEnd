@@ -8,12 +8,12 @@ class Parallax extends React.Component {
                 <div class="b-img1">
                     <div class="text">
                         <span class="bold">
-                            关于我
+                            你好啊
                         </span>
                     </div>
                 </div>
                 <section class="section section-dark">
-                    <h2>你好啊</h2>
+                    <h2>我是谁</h2>
                     <p>我是一名开发者，你希望了解我吗?</p>
                 </section>
                 <div class="b-img2">

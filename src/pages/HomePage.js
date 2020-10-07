@@ -1,7 +1,9 @@
 import React from 'react';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+
 import Parallax from './Parallax';
-import '../css/HomePage.css'
 import NavigateTool from './NavigateTool';
+import '../css/HomePage.css'
 
 class HomePage extends React.Component {
     render() {
