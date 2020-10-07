@@ -1,6 +1,9 @@
 .container {
 	height: 100%;
 	margin: 0;
+	position: absolute;
+	top: 70px;
+	width: 100%;
 }
 
 .b-img1, .b-img2, .b-img3 {
@@ -15,7 +18,7 @@
 
 .b-img1{
 	background-image: url(../img/bgp-lib-1.jpg);
-	min-height: calc(100% - 200px);
+	min-height: calc(100% - 270px);
 }
 
 .b-img2{

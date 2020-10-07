@@ -34,7 +34,7 @@ class Parallax extends React.Component {
                         </span>
                     </div>
                 </div>
-                <section class="section section-light">
+                <section class="section section-dark">
                     <h2>期望丰富</h2>
                     <p>我也希望，将我所喜欢的功能与内容，逐个添加进来，让大家喜欢。</p>
                 </section>

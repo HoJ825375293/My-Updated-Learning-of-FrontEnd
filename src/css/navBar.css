@@ -1,0 +1,43 @@
+.navBar {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #fff;
+    width: 100%;
+    height: 70px;
+    z-index: 1;
+}
+/*
+    #d4d7de
+*/
+
+.nav {
+    display: flex;
+    justify-content: right;
+    list-style: none;
+    margin-right: 7%;
+}
+
+.logo {
+    flex: 1 1 auto;
+    margin-left: 10%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+a {
+    margin: 15px;
+    color: #000;
+    text-decoration: none;
+    text-transform: uppercase;    
+}
+
+a:hover {
+    color: #000;
+}
+

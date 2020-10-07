@@ -6,7 +6,7 @@ import NavigateTool from './NavigateTool';
 class HomePage extends React.Component {
     render() {
         return(
-            <div>
+            <div class="Start" style = {{height:"100%"}}>
                 <NavigateTool/>
                 <Parallax/>
             </div>
