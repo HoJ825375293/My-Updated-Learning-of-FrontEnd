@@ -5,13 +5,13 @@ class NavigateTool extends React.Component {
     render() {
         return(
             <div className="navBar" >
-                <a href="#" className="logo">GoldenExp</a>
+                <a href="/" className="logo">GoldenExp</a>
                 <ul className="nav">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#music">Music</a></li>
-                    <li><a href="#blog">Blog</a></li>
-                    <li><a href="#vedio">Vedio</a></li>
-                    <li><a href="#me">Me</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/">Music</a></li>
+                    <li><a href="/">Blog</a></li>
+                    <li><a href="/">Vedio</a></li>
+                    <li><a href="/">Me</a></li>
                 </ul>
             </div>
         )

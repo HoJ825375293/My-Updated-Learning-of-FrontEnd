@@ -9,6 +9,7 @@
     width: 100%;
     height: 70px;
     z-index: 1;
+    overflow: hidden;
 }
 /*
     #d4d7de
