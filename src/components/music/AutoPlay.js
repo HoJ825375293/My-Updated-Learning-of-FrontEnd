@@ -34,7 +34,10 @@ class AutoPlay extends Component {
   playAudio = () => {
     const { id } = this.props;
     const audio = document.getElementById(`audio${id}`);
-    audio.play();
+    console.log("playing")
+    audio.play().catch(error=>{
+        console.log(error);
+    });
     this.setState({
       isPlay: true,
     });
@@ -43,6 +46,7 @@ class AutoPlay extends Component {
   pauseAudio = () => {
     const { id } = this.props;
     const audio = document.getElementById(`audio${id}`);
+    console.log("paused");
     audio.pause();
     this.setState({
       isPlay: false,
@@ -77,7 +81,7 @@ class AutoPlay extends Component {
   onTimeUpdate = () => {
     const { id } = this.props;
     const audio = document.getElementById(`audio${id}`);
-
+    console.log("1");
     this.setState({
       currentTime: audio.currentTime,
     });
@@ -110,7 +114,7 @@ class AutoPlay extends Component {
 
   render() {
     const { src, id } = this.props;
-
+    console.log(src)
     const {
       isPlay,
       isMuted,
@@ -125,7 +129,7 @@ class AutoPlay extends Component {
       <div>
         <audio
           id={`audio${id}`}
-          src={src}
+          src={`${src}`}
           ref={(audio) => {
             this.audioDom = audio;
           }}

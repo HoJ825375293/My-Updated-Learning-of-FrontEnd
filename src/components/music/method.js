@@ -1,3 +1,19 @@
+<input type="file" id="file" οnchange={this.onInputFileChange} />
+onInputFileChange = () => {
+    var file = document.getElementById('file').files[0];
+    var url = URL.createObjectURL(file);
+    console.log(url);
+    document.getElementById("audio123").src = url;
+}
+
+/*
+var pausen = function () {
+    return (
+        <div className="pause"><PauseCircleFilled style={{color:"black"}}/></div>
+    )
+}
+*/
+
 var audio = new Audio("./NewRomantics.flac")
 audio.addEventListener("timeupdate", function(){
     document.getElementById("totalTime").innerHTML = audio.duration;

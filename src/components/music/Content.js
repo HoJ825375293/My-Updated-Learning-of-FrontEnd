@@ -17,25 +17,33 @@ var playn = function () {
         <div className="play"><PlayCircleFilled style={{color:"black"}}/></div>
     )
 }
-/*
-var pausen = function () {
-    return (
-        <div className="pause"><PauseCircleFilled style={{color:"black"}}/></div>
-    )
-}
-*/
 
 class Content extends React.Component {
 
     componentDidMount() {
         console.log("componet did mount()");
         //init()
+        document.getElementById("playBox").addEventListener("click", function(){
+            const audio = document.getElementById("audio");
+            audio.play()
+        })
     }
 
     render() {
         return(
             <div>
-                
+                <audio
+                    id="audio"
+                    src="http://ossweb-img.qq.com/images/lol/m/act/a20160315live/shake_sound_male.mp3"
+                    ref={(audio) => {
+                        this.audioDom = audio;
+                    }}
+                    preload={"auto"}
+                    onCanPlay={this.onCanPlay}
+                    onTimeUpdate={this.onTimeUpdate}
+                    >
+                    <track src="http://ossweb-img.qq.com/images/lol/m/act/a20160315live/shake_sound_male.mp3" kind="captions" />
+                </audio>
                 <div className="main">
                     <div className="headBox clearFix">
                         <div className="goBack">
@@ -71,6 +79,8 @@ class Content extends React.Component {
                 </div>
                 <div className="blur">
 		        </div>
+                {/*<AutoPlay src="http://ossweb-img.qq.com/images/lol/m/act/a20160315live/shake_sound_male.mp3" id={123}/>*/}
+                {/* http://ossweb-img.qq.com/images/lol/m/act/a20160315live/shake_sound_male.mp3 */ }
             </div>
         )
     }
