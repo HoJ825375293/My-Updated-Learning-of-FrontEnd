@@ -100,7 +100,7 @@ html, body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 50px;
+    width: 100px;
     height: 2px;
     background-color: #b3ac94;
 }
@@ -108,7 +108,7 @@ html, body {
 .volume .volArc {
 	position: absolute;
 	top: 50%;
-	left: 50%;
+	left: 100%;
 	width: 12px;
 	height: 12px;
 	border-radius: 50%;
@@ -210,7 +210,7 @@ html, body {
     background-color: #333;
 }
 
-.play, .prev, .next {
+#playBox, .prev, .next {
     position: absolute;
     top: 50%;
     padding: 10px;
@@ -222,7 +222,7 @@ html, body {
     font-size: 1.5rem;
 }
 
-.play {
+#playBox {
     font-size: 3rem;
     left: 50%;
     transform: translate(-50%, -50%);
