@@ -13,12 +13,16 @@ import "./content.css";
 
 function GetAbsoluteLeft(element)
 {
-    if ( arguments.length != 1 || element == null )
+    if ( arguments.length !== 1 || element == null )
     {
         return null;
     }
     var offsetLeft = element.offsetLeft;
-    while( element = element.offsetParent ) {
+    while(1) {
+        let goOn = element = element.offsetParent;
+        if(!goOn){
+            break
+        }
         offsetLeft += element.offsetLeft;
     }
     return offsetLeft;
@@ -100,17 +104,8 @@ class Content extends React.Component {
         const audio = document.getElementById("audio");
         document.onmousemove = function(e) {
             let offSet = e.clientX - GetAbsoluteLeft(volume)
-            if(offSet >= 0 && offSet <= volume.offsetWidth){
+            if(offSet > 0 && offSet <= volume.offsetWidth){
                 volBar.style.width =  offSet + "px"
-                if(offSet === 0){
-                    this.setState({
-                        isMute: true
-                    })
-                }else{
-                    this.setState({
-                        isMute: false
-                    })
-                }
             }
         }
         audio.volume = Math.round(volBar.offsetWidth / volume.offsetWidth * 100) / 100;
