@@ -3,9 +3,11 @@
 ![image](https://github.com/HoJ825375293/My-Updated-Learning-of-FrontEnd/blob/master/public/intro/how-to-download.png)
 ### 2，在此目录打开终端
 ![image](https://github.com/HoJ825375293/My-Updated-Learning-of-FrontEnd/blob/master/public/intro/open-terminal.png)
-### 3，输入npm start，启动
+### 3，输入npm install, 准备本地环境
+![image](https://github.com/HoJ825375293/My-Updated-Learning-of-FrontEnd/blob/master/public/intro/npm-install.png)
+### 4，输入npm start，启动
 ![image](https://github.com/HoJ825375293/My-Updated-Learning-of-FrontEnd/blob/master/public/intro/input-npm.png)
-### 4，运行成功
+### 5，运行成功
 ![image](https://github.com/HoJ825375293/My-Updated-Learning-of-FrontEnd/blob/master/public/intro/complied.png)
 
 # 设计内容(至今):
