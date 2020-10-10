@@ -18,9 +18,10 @@
 
 .nav {
     display: flex;
+    position: relative;
     justify-content: right;
     list-style: none;
-    margin-right: 7%;
+    margin-right: 100px;
 }
 
 .logo {
