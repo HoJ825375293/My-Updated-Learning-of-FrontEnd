@@ -41,19 +41,19 @@ class Content extends React.Component {
 
         const audio = document.getElementById("audio");
         if( isPlay ){
-            this.setState({isPlay:false})
-            audio.play()
-        }else{
-            this.setState({isPlay:true})
             audio.pause()
+            this.setState({isPlay:false})
+        }else{
+            audio.play()
+            this.setState({isPlay:true})
         }
     }
 
     getPlayBtn = () => {
         if(this.state.isPlay){
-            return playn()
-        }else{
             return pausen()
+        }else{
+            return playn()
         }
     }
 
