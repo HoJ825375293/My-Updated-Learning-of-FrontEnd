@@ -6,11 +6,11 @@ StepBackwardOutlined,
 StepForwardOutlined,
 PlayCircleFilled,
 SoundOutlined,
-//PauseCircleFilled
+PauseCircleFilled
 } from '@ant-design/icons';
 //import { Button } from 'antd';
 import "./content.css";
-import AutoPlay from "./AutoPlay";
+//import AutoPlay from "./AutoPlay";
 
 var playn = function () {
     return (
@@ -18,23 +18,53 @@ var playn = function () {
     )
 }
 
+var pausen = function () {
+    return (
+        <div className="pause"><PauseCircleFilled style={{color:"black"}}/></div>
+    )
+}
+
 class Content extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            isPlay: false
+        }
+    }
 
     componentDidMount() {
-        console.log("componet did mount()");
-        //init()
-        document.getElementById("playBox").addEventListener("click", function(){
-            const audio = document.getElementById("audio");
-            audio.play()
-        })
+        document.getElementById("playBox").addEventListener("click", this.mainPlay)
     }
+
+    mainPlay = () => {
+        const { isPlay } = this.state
+
+        const audio = document.getElementById("audio");
+        if( isPlay ){
+            this.setState({isPlay:false})
+            audio.play()
+        }else{
+            this.setState({isPlay:true})
+            audio.pause()
+        }
+    }
+
+    getPlayBtn = () => {
+        if(this.state.isPlay){
+            return playn()
+        }else{
+            return pausen()
+        }
+    }
+
+
 
     render() {
         return(
             <div>
                 <audio
                     id="audio"
-                    src="http://ossweb-img.qq.com/images/lol/m/act/a20160315live/shake_sound_male.mp3"
+                    src="http://music.xf1433.com/up/view.php/6527cbe718e81364c98e007c8bf60f1e.mp3"
                     ref={(audio) => {
                         this.audioDom = audio;
                     }}
@@ -42,7 +72,7 @@ class Content extends React.Component {
                     onCanPlay={this.onCanPlay}
                     onTimeUpdate={this.onTimeUpdate}
                     >
-                    <track src="http://ossweb-img.qq.com/images/lol/m/act/a20160315live/shake_sound_male.mp3" kind="captions" />
+                    <track src="http://music.xf1433.com/up/view.php/6527cbe718e81364c98e007c8bf60f1e.mp3" kind="captions" />
                 </audio>
                 <div className="main">
                     <div className="headBox clearFix">
@@ -73,7 +103,7 @@ class Content extends React.Component {
                             <div className="totalTime">3:50</div>
                         </div>
                         <div className="prev"><StepBackwardOutlined style={{color:"black"}}/></div>
-                        <div id="playBox">{ playn() }</div>
+                        <div id="playBox">{ this.getPlayBtn() }</div>
                         <div className="next"><StepForwardOutlined style={{color:"black"}}/></div>
                     </div>
                 </div>
