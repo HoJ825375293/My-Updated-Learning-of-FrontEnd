@@ -69,11 +69,11 @@ class Content extends React.Component {
         var progressArc = document.getElementsByClassName("progressArc")[0]
         
         volArc.addEventListener("mousedown", this.handleVolArcMouseDown)
-        volArc.addEventListener("mouseup", this.handleVolArcMouseUp)
-        volArc.addEventListener("mouseout", this.handleVolArcMouseUp)
+        document.addEventListener("mouseup", this.handleVolArcMouseUp)
+        //volArc.addEventListener("mouseout", this.handleVolArcMouseUp)
         progressArc.addEventListener("mousedown", this.handleProArcMouseDown)
-        progressArc.addEventListener("mouseup", this.handleProArcMouseUp)
-        progressArc.addEventListener("mouseout", this.handleProArcMouseUp)
+        document.addEventListener("mouseup", this.handleProArcMouseUp)
+        //progressArc.addEventListener("mouseout", this.handleProArcMouseUp)
         const audio = document.getElementById("audio");
         const volume = document.getElementById("volume")
         const volBar = document.getElementById("volBar")
