@@ -113,7 +113,8 @@ html, body {
 	height: 12px;
 	border-radius: 50%;
 	background-color: #f2f4f3;
-	transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    cursor: pointer;
 }
 
 #volumeTag {
@@ -138,6 +139,10 @@ html, body {
     background-position: center top;
     background-size: cover;
     z-index: 3;
+    animation: move_rotate linear 5s infinite;
+    -webkit-animation: move_rotate linear 5s infinite;
+    animation-play-state: paused;
+    -webkit-animation-play-state: paused;
 }
 
 .border {
@@ -153,6 +158,10 @@ html, body {
     background: #333;
     background-image: repeating-linear-gradient(100deg, #000, #000, 2px);
     z-index: 2;
+    animation: move_rotate linear 5s infinite;
+    -webkit-animation: move_rotate linear 5s infinite;
+    animation-play-state: paused;
+    -webkit-animation-play-state: paused;
 }
 
 .controlBox {
@@ -177,7 +186,7 @@ html, body {
 .curTime {
     position: absolute;
     top: -5px;
-    right: 102%;
+    right: 104%;
     height: 10px;
     line-height: 10px;
 }
@@ -207,7 +216,9 @@ html, body {
     width: 16px;
     height: 16px;
     border-radius: 50%;
+    transform: translate(-50%, 0);
     background-color: #333;
+    cursor: pointer;
 }
 
 #playBox, .prev, .next {
@@ -241,6 +252,42 @@ html, body {
 .AngleReset {
 	transform: rotate(0deg);
 	-webkit-transform: rotate(0deg);
+}
+
+@keyframes move_rotate{
+    0%{
+        transform: rotate(0deg);
+    }
+    25%{
+        transform: rotate(90deg);
+    }
+    50%{
+        transform: rotate(180deg);
+    }
+    75%{
+        transform: rotate(270deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes move_rotate{
+    0%{
+        transform: rotate(0deg);
+    }
+    25%{
+        transform: rotate(90deg);
+    }
+    50%{
+        transform: rotate(180deg);
+    }
+    75%{
+        transform: rotate(270deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
 }
 
 @media(min-width: 50px) {

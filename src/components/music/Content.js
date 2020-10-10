@@ -38,6 +38,8 @@ var musicList = [
     }
 ]
 
+var isDrag = false
+
 class Content extends React.Component {
     constructor(props){
         super(props);
@@ -48,7 +50,8 @@ class Content extends React.Component {
             musicIndex: 0,
             songName: musicList[0].songName,
             singerName: musicList[0].singerName,
-            isMute: false
+            isMute: false,
+            //isDrag: false
         }
     }
 
@@ -57,21 +60,20 @@ class Content extends React.Component {
         document.getElementsByClassName("prev")[0].addEventListener("click", this.onSongPrev)
         document.getElementsByClassName("next")[0].addEventListener("click", this.onSongNext)
         document.getElementById("volumeTag").addEventListener("click", this.handleMute)
-        
+
         var volArc = document.getElementsByClassName("volArc")[0]
-        var processArc = document.getElementsByClassName("volArc")[0]
+        var progressArc = document.getElementsByClassName("progressArc")[0]
         
         volArc.addEventListener("mousedown", this.handleVolArcMouseDown)
         volArc.addEventListener("mouseup", this.handleVolArcMouseUp)
         volArc.addEventListener("mouseout", this.handleVolArcMouseUp)
-        processArc.addEventListener("mousedown", this.handleProArcMouseDown)
-        processArc.addEventListener("mouseup", this.handleProArcMouseUp)
-        processArc.addEventListener("mouseout", this.handleProArcMouseUp)
+        progressArc.addEventListener("mousedown", this.handleProArcMouseDown)
+        progressArc.addEventListener("mouseup", this.handleProArcMouseUp)
+        progressArc.addEventListener("mouseout", this.handleProArcMouseUp)
         const audio = document.getElementById("audio");
         const volume = document.getElementById("volume")
         const volBar = document.getElementById("volBar")
         audio.volume = Math.round(volBar.offsetWidth / volume.offsetWidth * 100) / 100;
-        //audio.addEventListener("timeupdate", this.onTimeChange)
     }
 
     handleMute = () => {
@@ -126,17 +128,30 @@ class Content extends React.Component {
     }
 
     handleProDrag = () => {
-        console.log("drag");
+        isDrag = true
+
+        var progressBox = document.getElementsByClassName("progressBox")[0];
+        var progressBar = document.getElementsByClassName("progressBar")[0];
+        const audio = document.getElementById("audio");
+        document.onmousemove = function(e) {
+            let offSet = e.clientX - GetAbsoluteLeft(progressBox)
+            if(offSet >= 0 && offSet <= progressBox.offsetWidth){
+                progressBar.style.width =  offSet + "px"
+            }
+        }
+        audio.currentTime = progressBar.offsetWidth / progressBox.offsetWidth * audio.duration;
     }
 
     handleProArcMouseDown = () => {
-        var processArc = document.getElementsByClassName("volArc")[0]
-        processArc.addEventListener("mousemove", this.handleProDrag)
+        var progressArc = document.getElementsByClassName("progressArc")[0]
+        progressArc.addEventListener("mousemove", this.handleProDrag)
     }
 
     handleProArcMouseUp = () => {
-        var processArc = document.getElementsByClassName("volArc")[0]
-        processArc.removeEventListener("mousemove", this.handleProDrag)
+        var progressArc = document.getElementsByClassName("progressArc")[0]
+        progressArc.removeEventListener("mousemove", this.handleProDrag)
+        document.onmousemove = null
+        isDrag = false
     }
     
     formatTime = (num) => {
@@ -149,21 +164,23 @@ class Content extends React.Component {
     }
 
     onTimeChange = () => {
-        const audio = document.getElementById("audio");
-        const progressBar = document.getElementsByClassName("progressBar")[0]
-        const progressBox = document.getElementsByClassName("progressBox")[0]
-        
-        if (audio.currentTime === audio.duration) {
+        if(!isDrag){
+            const audio = document.getElementById("audio");
+            const progressBar = document.getElementsByClassName("progressBar")[0]
+            const progressBox = document.getElementsByClassName("progressBox")[0]
+            
+            if (audio.currentTime === audio.duration) {
+                this.setState({
+                isPlay: false,
+                });
+            }
+            const currentTime = this.formatTime(audio.currentTime)
             this.setState({
-              isPlay: false,
-            });
+                currentTime:currentTime
+            })
+            var curLong = Math.round(audio.currentTime / audio.duration * (progressBox.offsetWidth - 16))
+            progressBar.style.width = curLong + "px"
         }
-        const currentTime = this.formatTime(audio.currentTime)
-        this.setState({
-            currentTime:currentTime
-        })
-        var curLong = Math.round(audio.currentTime / audio.duration * (progressBox.offsetWidth - 16))
-        progressBar.style.width = curLong + "px"
     }
 
     mainPlay = () => {
@@ -180,12 +197,20 @@ class Content extends React.Component {
         const audio = document.getElementById("audio");
         audio.play()
         this.setState({isPlay:true})
+        document.getElementsByClassName("border")[0].style.webkitAnimationPlayState = "running"
+        document.getElementsByClassName("border")[0].style.animationPlayState = "running"
+        document.getElementsByClassName("disc")[0].style.webkitAnimationPlayState = "running"
+        document.getElementsByClassName("disc")[0].style.animationPlayState = "running"
     }
 
     pause = () => {
         const audio = document.getElementById("audio");
         audio.pause()
         this.setState({isPlay:false})
+        document.getElementsByClassName("border")[0].style.webkitAnimationPlayState = "paused"
+        document.getElementsByClassName("border")[0].style.animationPlayState = "paused"
+        document.getElementsByClassName("disc")[0].style.webkitAnimationPlayState = "paused"
+        document.getElementsByClassName("disc")[0].style.animationPlayState = "paused"
     }
 
     getMuteBtn = () => {
