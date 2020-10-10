@@ -5,6 +5,9 @@
 
 ### 3，输入npm start，启动
 
+### 4，运行成功
+![image](https://github.com/HoJ825375293/My-Updated-Learning-of-FrontEnd/blob/master/public/intro/complied.png)
+
 # 设计内容(至今):
 ### 1，响应布局的导航栏与视差页
 
