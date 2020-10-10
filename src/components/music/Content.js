@@ -55,6 +55,12 @@ class Content extends React.Component {
         document.getElementById("playBox").addEventListener("click", this.mainPlay)
         document.getElementsByClassName("prev")[0].addEventListener("click", this.onSongPrev)
         document.getElementsByClassName("next")[0].addEventListener("click", this.onSongNext)
+        
+        var volArc = document.getElementsByClassName("volArc")[0]
+        var processArc = document.getElementsByClassName("volArc")[0]
+        
+        volArc.addEventListener("mousedown", this.handleVolArcMouseDown)
+        volArc.addEventListener("mouseup", this.handleVolArcMouseUp)
         const audio = document.getElementById("audio");
         const volume = document.getElementById("volume")
         const volBar = document.getElementById("volBar")
@@ -62,6 +68,21 @@ class Content extends React.Component {
         //audio.addEventListener("timeupdate", this.onTimeChange)
     }
 
+    handleVolArcDrag = () => {
+        console.log("Drag")
+        
+    }
+
+    handleVolArcMouseDown = () => {
+        var volArc = document.getElementsByClassName("volArc")[0]
+        volArc.addEventListener("mousemove", this.handleVolArcDrag)
+    }
+
+    handleVolArcMouseUp = () => {
+        var volArc = document.getElementsByClassName("volArc")[0]
+        volArc.removeEventListener("mousemove", this.handleVolArcDrag)
+    }
+    
     formatTime = (num) => {
         let minute, seconde
         minute = Math.floor(num / 60)
