@@ -6,22 +6,22 @@ StepBackwardOutlined,
 StepForwardOutlined,
 PlayCircleFilled,
 SoundOutlined,
+CloseCircleOutlined,
 PauseCircleFilled
 } from '@ant-design/icons';
-//import { Slider } from 'antd';
 import "./content.css";
-//import AutoPlay from "./AutoPlay";
 
-var playn = function () {
-    return (
-        <div className="play"><PlayCircleFilled style={{color:"black"}}/></div>
-    )
-}
-
-var pausen = function () {
-    return (
-        <div className="pause"><PauseCircleFilled style={{color:"black"}}/></div>
-    )
+function GetAbsoluteLeft(element)
+{
+    if ( arguments.length != 1 || element == null )
+    {
+        return null;
+    }
+    var offsetLeft = element.offsetLeft;
+    while( element = element.offsetParent ) {
+        offsetLeft += element.offsetLeft;
+    }
+    return offsetLeft;
 }
 
 var musicList = [
@@ -47,7 +47,8 @@ class Content extends React.Component {
             currentTime: "00:00",
             musicIndex: 0,
             songName: musicList[0].songName,
-            singerName: musicList[0].singerName
+            singerName: musicList[0].singerName,
+            isMute: false
         }
     }
 
@@ -55,12 +56,17 @@ class Content extends React.Component {
         document.getElementById("playBox").addEventListener("click", this.mainPlay)
         document.getElementsByClassName("prev")[0].addEventListener("click", this.onSongPrev)
         document.getElementsByClassName("next")[0].addEventListener("click", this.onSongNext)
+        document.getElementById("volumeTag").addEventListener("click", this.handleMute)
         
         var volArc = document.getElementsByClassName("volArc")[0]
         var processArc = document.getElementsByClassName("volArc")[0]
         
         volArc.addEventListener("mousedown", this.handleVolArcMouseDown)
         volArc.addEventListener("mouseup", this.handleVolArcMouseUp)
+        volArc.addEventListener("mouseout", this.handleVolArcMouseUp)
+        processArc.addEventListener("mousedown", this.handleProArcMouseDown)
+        processArc.addEventListener("mouseup", this.handleProArcMouseUp)
+        processArc.addEventListener("mouseout", this.handleProArcMouseUp)
         const audio = document.getElementById("audio");
         const volume = document.getElementById("volume")
         const volBar = document.getElementById("volBar")
@@ -68,9 +74,44 @@ class Content extends React.Component {
         //audio.addEventListener("timeupdate", this.onTimeChange)
     }
 
+    handleMute = () => {
+        var volBar = document.getElementById("volBar");
+        var volume = document.getElementById("volume");
+        const audio = document.getElementById("audio");
+        if(volBar.offsetWidth){
+            volBar.style.width = "0px"
+            this.setState({
+                isMute:true
+            })
+        }else{
+            volBar.style.width = volume.offsetWidth + "px"
+            this.setState({
+                isMute:false
+            })
+        }
+        audio.volume = Math.round(volBar.offsetWidth / volume.offsetWidth * 100) / 100;
+    }
+
     handleVolArcDrag = () => {
-        console.log("Drag")
-        
+        var volume = document.getElementById("volume");
+        var volBar = document.getElementById("volBar");
+        const audio = document.getElementById("audio");
+        document.onmousemove = function(e) {
+            let offSet = e.clientX - GetAbsoluteLeft(volume)
+            if(offSet >= 0 && offSet <= volume.offsetWidth){
+                volBar.style.width =  offSet + "px"
+                if(offSet === 0){
+                    this.setState({
+                        isMute: true
+                    })
+                }else{
+                    this.setState({
+                        isMute: false
+                    })
+                }
+            }
+        }
+        audio.volume = Math.round(volBar.offsetWidth / volume.offsetWidth * 100) / 100;
     }
 
     handleVolArcMouseDown = () => {
@@ -81,6 +122,21 @@ class Content extends React.Component {
     handleVolArcMouseUp = () => {
         var volArc = document.getElementsByClassName("volArc")[0]
         volArc.removeEventListener("mousemove", this.handleVolArcDrag)
+        document.onmousemove = null
+    }
+
+    handleProDrag = () => {
+        console.log("drag");
+    }
+
+    handleProArcMouseDown = () => {
+        var processArc = document.getElementsByClassName("volArc")[0]
+        processArc.addEventListener("mousemove", this.handleProDrag)
+    }
+
+    handleProArcMouseUp = () => {
+        var processArc = document.getElementsByClassName("volArc")[0]
+        processArc.removeEventListener("mousemove", this.handleProDrag)
     }
     
     formatTime = (num) => {
@@ -132,11 +188,19 @@ class Content extends React.Component {
         this.setState({isPlay:false})
     }
 
+    getMuteBtn = () => {
+        if(this.state.isMute){
+            return <CloseCircleOutlined />
+        }else{
+            return <SoundOutlined />
+        }
+    }
+
     getPlayBtn = () => {
         if(this.state.isPlay){
-            return pausen()
+            return <div className="pause"><PauseCircleFilled style={{color:"black"}}/></div>
         }else{
-            return playn()
+            return <div className="play"><PlayCircleFilled style={{color:"black"}}/></div>
         }
     }
 
@@ -221,7 +285,7 @@ class Content extends React.Component {
 					        <div className="volBar" id="volBar">
 						        <span className="volArc"></span>
 					        </div>
-					        <div id="muteBtn"><i id="volumeTag"><SoundOutlined /></i></div>
+                            <div id="muteBtn"><i id="volumeTag">{ this.getMuteBtn() }</i></div>
                             <div className="border"></div>
                             <div className="disc"></div>
                         </div>
