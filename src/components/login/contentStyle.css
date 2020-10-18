@@ -114,10 +114,25 @@
 	font-weight: 400;
 }
 
+/*
 .login .signup a{
 	font-weight: 600;
 	text-decoration: none;
 	color: #677EFF;
+}
+*/
+
+button.link {
+	display: inline-block;
+	position: relative;
+	background-color: transparent;
+	cursor: pointer;
+	border: 0;
+	outline:none;
+	padding-left: 10px;
+	color: #677EFF;
+	font-weight: 600;
+	text-decoration: underline;
 }
 
 .login .SUBX {

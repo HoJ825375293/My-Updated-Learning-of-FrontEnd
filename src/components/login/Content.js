@@ -36,7 +36,9 @@ class Content extends React.Component {
                                 <input type="text" name="" placeholder="UserName"/>
                                 <input type="password" name="" placeholder="Password"/>
                                 <input type="submit" name="" value="Login"/>
-                                <p className="signup">Don't have an account ? <a href="javascript:void(0);" onClick={this.handleFormChange}>Sign Up</a></p>
+                                <p className="signup">Don't have an account ? 
+                                <button type="button" className="link" onClick={this.handleFormChange}>Sign Up</button>
+                                </p>
                             </form>
                         </div>
                     </div>
@@ -49,7 +51,9 @@ class Content extends React.Component {
                                 <input type="password" name="" placeholder="Create Password"/>
                                 <input type="password" name="" placeholder="Confirm Password"/>
                                 <input type="submit" name="" value="Sign Up"/>
-                                <p className="signup">Already have an account ? <a href="javascript:void(0);" onClick={this.handleFormChange}>Sign In</a></p>
+                                <p className="signup">Already have an account ? 
+                                <button type="button" className="link" onClick={this.handleFormChange}>Sign In</button>
+                                </p>
                             </form>
                         </div>
                         <div className="imgBxSignUp"></div>
