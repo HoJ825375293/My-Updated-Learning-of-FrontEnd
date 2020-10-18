@@ -129,7 +129,7 @@ button.link {
 	cursor: pointer;
 	border: 0;
 	outline:none;
-	padding-left: 10px;
+	margin-left: 10px;
 	color: #677EFF;
 	text-transform: uppercase;
 	font-weight: 600;
