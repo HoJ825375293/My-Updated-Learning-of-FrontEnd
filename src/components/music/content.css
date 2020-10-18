@@ -3,10 +3,10 @@
 	margin: 0;
 }
 
+/*
 body {
 	background-color: #ccc;
 }
-/*
 html, body {
 	width: 100%;
 	height: 100%;
@@ -123,6 +123,7 @@ html, body {
     right: 105%;
     transform: translate(0, -50%);
     color: #77756f;
+    cursor: pointer;
 }
 
 .disc {

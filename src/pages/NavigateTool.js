@@ -11,7 +11,7 @@ class NavigateTool extends React.Component {
                     <li><a href="/music">Music</a></li>
                     <li><a href="/">Blog</a></li>
                     <li><a href="/">Vedio</a></li>
-                    <li><a href="/">Me</a></li>
+                    <li><a href="/login">Me</a></li>
                 </ul>
             </div>
         )

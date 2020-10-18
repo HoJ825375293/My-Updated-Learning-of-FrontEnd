@@ -42,7 +42,7 @@ var musicList = [
     }
 ]
 
-var isDrag = false
+
 
 class Content extends React.Component {
     constructor(props){
@@ -55,7 +55,7 @@ class Content extends React.Component {
             songName: musicList[0].songName,
             singerName: musicList[0].singerName,
             isMute: false,
-            //isDrag: false
+            isDrag: false
         }
     }
 
@@ -84,7 +84,7 @@ class Content extends React.Component {
         var volBar = document.getElementById("volBar");
         var volume = document.getElementById("volume");
         const audio = document.getElementById("audio");
-        if(volBar.offsetWidth){
+        if(volBar.offsetWidth > 0){
             volBar.style.width = "0px"
             this.setState({
                 isMute:true
@@ -98,13 +98,27 @@ class Content extends React.Component {
         audio.volume = Math.round(volBar.offsetWidth / volume.offsetWidth * 100) / 100;
     }
 
+    handleMuteBtnState = (VolLen) => {
+        if(VolLen <= 0){
+            this.setState({
+                isMute:true
+            })
+        }else{
+            this.setState({
+                isMute:false
+            })
+        }
+    }
+
     handleVolArcDrag = () => {
+        var handleMuteBtnState = this.handleMuteBtnState
         var volume = document.getElementById("volume");
         var volBar = document.getElementById("volBar");
         const audio = document.getElementById("audio");
         document.onmousemove = function(e) {
             let offSet = e.clientX - GetAbsoluteLeft(volume)
-            if(offSet > 0 && offSet <= volume.offsetWidth){
+            if(offSet <= volume.offsetWidth){
+                handleMuteBtnState(offSet)
                 volBar.style.width =  offSet + "px"
             }
         }
@@ -112,41 +126,56 @@ class Content extends React.Component {
     }
 
     handleVolArcMouseDown = () => {
-        var volArc = document.getElementsByClassName("volArc")[0]
-        volArc.addEventListener("mousemove", this.handleVolArcDrag)
+        document.addEventListener("mousemove", this.handleVolArcDrag)
     }
 
     handleVolArcMouseUp = () => {
-        var volArc = document.getElementsByClassName("volArc")[0]
-        volArc.removeEventListener("mousemove", this.handleVolArcDrag)
+        document.removeEventListener("mousemove", this.handleVolArcDrag)
         document.onmousemove = null
     }
 
     handleProDrag = () => {
-        isDrag = true
+        this.setState({
+            isDrag:true
+        })
+        //进度条和时间字样变化，audio对象保持播放，直到鼠标松开
 
-        var progressBox = document.getElementsByClassName("progressBox")[0];
-        var progressBar = document.getElementsByClassName("progressBar")[0];
         const audio = document.getElementById("audio");
+        const progressBar = document.getElementsByClassName("progressBar")[0]
+        const progressBox = document.getElementsByClassName("progressBox")[0]
+        
+        if (audio.currentTime === audio.duration) {
+            this.setState({
+                isPlay: false,
+            });
+        }
+        const currentTime = this.formatTime(audio.currentTime)
+        this.setState({
+            currentTime:currentTime
+        })
+        var curLong = Math.round(audio.currentTime / audio.duration * (progressBox.offsetWidth - 16))
+        progressBar.style.width = curLong + "px"
+
+        //
         document.onmousemove = function(e) {
             let offSet = e.clientX - GetAbsoluteLeft(progressBox)
             if(offSet >= 0 && offSet <= progressBox.offsetWidth){
                 progressBar.style.width =  offSet + "px"
             }
         }
-        audio.currentTime = progressBar.offsetWidth / progressBox.offsetWidth * audio.duration;
+        //audio.currentTime = progressBar.offsetWidth / progressBox.offsetWidth * audio.duration;
     }
 
     handleProArcMouseDown = () => {
-        var progressArc = document.getElementsByClassName("progressArc")[0]
-        progressArc.addEventListener("mousemove", this.handleProDrag)
+        document.addEventListener("mousemove", this.handleProDrag)
     }
 
     handleProArcMouseUp = () => {
-        var progressArc = document.getElementsByClassName("progressArc")[0]
-        progressArc.removeEventListener("mousemove", this.handleProDrag)
+        document.removeEventListener("mousemove", this.handleProDrag)
         document.onmousemove = null
-        isDrag = false
+        this.setState({
+            isDrag:false
+        })
     }
     
     formatTime = (num) => {
@@ -159,14 +188,14 @@ class Content extends React.Component {
     }
 
     onTimeChange = () => {
-        if(!isDrag){
+        if(!this.state.isDrag){
             const audio = document.getElementById("audio");
             const progressBar = document.getElementsByClassName("progressBar")[0]
             const progressBox = document.getElementsByClassName("progressBox")[0]
             
             if (audio.currentTime === audio.duration) {
                 this.setState({
-                isPlay: false,
+                    isPlay: false,
                 });
             }
             const currentTime = this.formatTime(audio.currentTime)
