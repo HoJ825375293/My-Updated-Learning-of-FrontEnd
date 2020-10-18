@@ -131,6 +131,7 @@ button.link {
 	outline:none;
 	padding-left: 10px;
 	color: #677EFF;
+	text-transform: uppercase;
 	font-weight: 600;
 	text-decoration: underline;
 }
