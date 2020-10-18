@@ -294,7 +294,7 @@ html, body {
 @media(min-width: 50px) {
 	.main{
 		border:1px solid #fff;
-		box-shadow: 0px 0px 20px 5px #5e5e5e;
+		box-shadow: 0px 0px 7px 2px #5e5e5e;
 	}
 	
 	.main, .blur {
