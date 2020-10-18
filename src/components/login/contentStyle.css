@@ -159,3 +159,18 @@ button.link {
 .login .active .imgBxSignUp {
 	left: -100%;
 }
+
+@media (max-width: 800px){
+	.login .loginContainer {
+		max-width: 400px;
+	}
+	.login .imgBxSignIn {
+		display: none;
+	}
+	.login .imgBxSignUp {
+		display: none;
+	}
+	.login .formBx {
+		width: 100%;
+	}
+}

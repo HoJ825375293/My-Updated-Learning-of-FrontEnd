@@ -12,6 +12,7 @@
 ![image](https://github.com/HoJ825375293/My-Updated-Learning-of-FrontEnd/blob/master/public/intro/mainPage.png)
 ### 2，模拟网易云音乐(暂时两首歌，待后端设计完毕加入在线搜歌，实时播放与下载)
 ![image](https://github.com/HoJ825375293/My-Updated-Learning-of-FrontEnd/blob/master/public/intro/musicPage.png)
+### 3，响应式动画设计登陆注册
 
 # 设计过程：
 ### 2020.9.28 SetUp环境。
@@ -26,6 +27,7 @@
   播放器拓展-MV
   音乐链接过慢
   代码整理
+  局部设计更新/全局设计适配
 */
 
 ### 2020.10.11~延期 折叠卡片+java后端
