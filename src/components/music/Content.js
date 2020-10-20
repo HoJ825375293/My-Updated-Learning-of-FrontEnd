@@ -156,7 +156,7 @@ class Content extends React.Component {
         var curLong = Math.round(audio.currentTime / audio.duration * (progressBox.offsetWidth - 16))
         progressBar.style.width = curLong + "px"
 
-        //
+        //每次调用更新播放时间
         document.onmousemove = function(e) {
             let offSet = e.clientX - GetAbsoluteLeft(progressBox)
             if(offSet >= 0 && offSet <= progressBox.offsetWidth){
@@ -171,8 +171,15 @@ class Content extends React.Component {
     }
 
     handleProArcMouseUp = () => {
+        const audio = document.getElementById("audio");
+        const progressBar = document.getElementsByClassName("progressBar")[0]
+        const progressBox = document.getElementsByClassName("progressBox")[0]
+
         document.removeEventListener("mousemove", this.handleProDrag)
         document.onmousemove = null
+
+        //结尾时获取位置，更新audio.currentTime
+        //audio.currentTime = progressBar.offsetWidth / progressBox.offsetWidth * audio.duration;
         this.setState({
             isDrag:false
         })

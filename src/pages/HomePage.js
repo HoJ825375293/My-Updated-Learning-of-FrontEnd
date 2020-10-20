@@ -5,6 +5,8 @@ import Parallax from './Parallax';
 import NavigateTool from './NavigateTool';
 import MusicPage from './MusicPage'
 import LoginPage from './LoginPage'
+import VedioPage from './VedioPage'
+import BlogPage from './BlogPage'
 
 class HomePage extends React.Component {
     render() {
@@ -16,6 +18,8 @@ class HomePage extends React.Component {
                         <Route exact path="/" component={Parallax}/>
                         <Route path="/music" component={MusicPage}/>
                         <Route path="/login" component={LoginPage}/>
+                        <Route path="/vedio" component={VedioPage}/>
+                        <Route path="/blog" component={BlogPage}/>
                     </Switch>
                 </Router>
             </div>
