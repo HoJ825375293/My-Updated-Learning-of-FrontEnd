@@ -1,4 +1,5 @@
 import React from 'react';
+import "isomorphic-fetch"
 import "./contentStyle.css"
 
 class Content extends React.Component {
@@ -7,6 +8,11 @@ class Content extends React.Component {
         this.state={
             index: false
         }
+    }
+
+    async componentDidMount() {
+        let users = await (await fetch('http://localhost:8080/api/users')).json();
+        console.log(users)
     }
 
     handleFormChange = () => {
@@ -31,7 +37,7 @@ class Content extends React.Component {
                     <div className="user SIBX">
                         <div className="imgBxSignIn"></div>
                         <div className="formBx">
-                            <form>
+                            <form >
                                 <h2>Sign In</h2>
                                 <input type="text" name="" placeholder="UserName"/>
                                 <input type="password" name="" placeholder="Password"/>
