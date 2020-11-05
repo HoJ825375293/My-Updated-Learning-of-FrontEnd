@@ -7,7 +7,7 @@
 ### 4，npm start，启动
 ![image](https://github.com/HoJ825375293/My-Updated-Learning-of-FrontEnd/blob/master/public/intro/input-npm.png)
 
-# 设计内容(至今):
+# 设计内容(资源失效，BUG待修复):
 ## 期望用户可以在本站点分享自己喜欢的歌曲，编写的博客与记录的视频，后续功能也将以此为目标设计改进。
 ### 1，响应布局的导航栏与视差页
 ![image](https://github.com/HoJ825375293/My-Updated-Learning-of-FrontEnd/blob/master/public/intro/mainPage.png)
